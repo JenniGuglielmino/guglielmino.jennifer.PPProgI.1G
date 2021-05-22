@@ -24,7 +24,7 @@ int main()
 {
     eNotebook notebooks[TAM] = {
         {0, "core", "intel", 1500},
-        {1, "amd", "ryzen", 2000},
+        {1, "amd", "intel", 2000},
     };
 
 
@@ -34,7 +34,13 @@ int main()
     int cantidadLetras;
     totalConDescuento = aplicarDescuento(&precio);
     cantidadLetras = contarCaracteres(cadena, 'a');
+
     ordenarPorMarcaYPrecio(notebooks, TAM);
+
+    for(int i=0;i<TAM;i++){
+        printf("%d %s %s %d\n", notebooks[i].id, notebooks[i].procesador, notebooks[i].marca, notebooks[i].precio);
+
+    }
     printf("%f", totalConDescuento);
     printf("\n%d", cantidadLetras);
     return 0;
@@ -63,7 +69,7 @@ int ordenarPorMarcaYPrecio(eNotebook notebooks[], int tam){
     {
         for(int j=i+1; j<tam; j++)
         {
-            if(strcmp(notebooks[i].marca, notebooks[j].marca) < 0 || (strcmp(notebooks[i].marca, notebooks[j].marca) == 0 && notebooks[i].precio < notebooks[j].precio))
+            if(strcmp(notebooks[i].marca, notebooks[j].marca) > 0 || (strcmp(notebooks[i].marca, notebooks[j].marca) == 0 && notebooks[i].precio > notebooks[j].precio))
              {
                 auxNotebook = notebooks[i];
                 notebooks[i] = notebooks[j];
